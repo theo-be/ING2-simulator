@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://veht4ca0bsaj"]
+
+[ext_resource type="Script" path="res://scenes/main_menu/PlayerChooser.cs" id="1_gyi0t"]
+[ext_resource type="PackedScene" uid="uid://gprrvwi4wpx4" path="res://scenes/scene1.tscn" id="2_5t3om"]
+[ext_resource type="Texture2D" uid="uid://ctoehxbltjuqm" path="res://images/background_menu.jpg" id="2_li2a5"]
+[ext_resource type="PackedScene" uid="uid://dcfnxkp0lvjsc" path="res://scenes/main_menu/main_menu.tscn" id="3_xlvhv"]
+[ext_resource type="PackedScene" uid="uid://pte1kp034hsy" path="res://scenes/main_menu/skin_carousel.tscn" id="5_ytwhl"]
+
+[sub_resource type="SystemFont" id="SystemFont_s7csl"]
+font_names = PackedStringArray("Calibri")
+
+[node name="Player_Chooser" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gyi0t")
+StartLevel = ExtResource("2_5t3om")
+StartMenu = ExtResource("3_xlvhv")
+sceneToAdd = ExtResource("5_ytwhl")
+scenesContainerPath = NodePath("MarginContainer/HBoxContainer")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_li2a5")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 60
+
+[node name="Seperator" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="1Player" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = " 1 Joueur"
+
+[node name="2Players" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "2  Joueurs"
+
+[node name="3Players" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = " 3 Joueurs"
+
+[node name="Quit_Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = " Retour"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 150
+alignment = 1
+
+[node name="SkinCarousel" parent="MarginContainer/HBoxContainer" instance=ExtResource("5_ytwhl")]
+layout_mode = 2
+
+[node name="Start_Button" type="Button" parent="MarginContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_fonts/font = SubResource("SystemFont_s7csl")
+theme_override_font_sizes/font_size = 20
+text = "Lets go !"

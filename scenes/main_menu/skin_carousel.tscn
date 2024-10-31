@@ -1,0 +1,156 @@
+[gd_scene load_steps=7 format=3 uid="uid://pte1kp034hsy"]
+
+[ext_resource type="Script" path="res://scenes/main_menu/SkinCarousel.cs" id="1_vjb72"]
+[ext_resource type="Texture2D" uid="uid://b8ovh6m6mjvsw" path="res://images/2915003117.webp" id="2_dx0yt"]
+
+[sub_resource type="SystemFont" id="SystemFont_60uy6"]
+font_names = PackedStringArray("Calibri")
+subpixel_positioning = 0
+
+[sub_resource type="Animation" id="Animation_kgefa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ptddf"]
+resource_name = "SelectAnimation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mx2yp"]
+_data = {
+"RESET": SubResource("Animation_kgefa"),
+"SelectAnimation": SubResource("Animation_ptddf")
+}
+
+[node name="SkinCarousel" type="HBoxContainer" node_paths=PackedStringArray("currentSkinDisplay", "nextButton", "prevButton", "selectButton")]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+alignment = 1
+script = ExtResource("1_vjb72")
+currentSkinDisplay = NodePath("Player_Catalog/ColorRect/MarginContainer/SkinDisplay")
+nextButton = NodePath("Right_Pag")
+prevButton = NodePath("Left_Pag")
+selectButton = NodePath("Player_Catalog/Select_Button")
+
+[node name="Left_Pag" type="Button" parent="."]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = SubResource("SystemFont_60uy6")
+theme_override_font_sizes/font_size = 20
+text = "<"
+
+[node name="Player_Catalog" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="PseudoInput" type="LineEdit" parent="Player_Catalog"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+placeholder_text = "Entrez votre pseudo"
+alignment = 1
+max_length = 15
+
+[node name="Seperator2" type="Control" parent="Player_Catalog"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Player_Catalog"]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 2
+color = Color(0, 0, 0, 0.658824)
+
+[node name="MarginContainer" type="MarginContainer" parent="Player_Catalog/ColorRect"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_right = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SkinDisplay" type="TextureRect" parent="Player_Catalog/ColorRect/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_dx0yt")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player_Catalog/ColorRect/MarginContainer/SkinDisplay"]
+libraries = {
+"": SubResource("AnimationLibrary_mx2yp")
+}
+
+[node name="Select_Button" type="Button" parent="Player_Catalog"]
+custom_minimum_size = Vector2(120, 20)
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_60uy6")
+theme_override_font_sizes/font_size = 20
+text = "Sélectionner"
+
+[node name="Right_Pag" type="Button" parent="."]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = SubResource("SystemFont_60uy6")
+theme_override_font_sizes/font_size = 20
+text = ">"
+
+[connection signal="pressed" from="Left_Pag" to="." method="OnPrevButtonPressed"]
+[connection signal="pressed" from="Player_Catalog/Select_Button" to="." method="OnSelectButtonPressed"]
+[connection signal="pressed" from="Right_Pag" to="." method="OnNextButtonPressed"]

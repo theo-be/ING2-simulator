@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://gprrvwi4wpx4"]
+[gd_scene load_steps=11 format=3 uid="uid://gprrvwi4wpx4"]
 
 [ext_resource type="Texture2D" uid="uid://bpiwlytnary43" path="res://images/chantier.png" id="1_sln48"]
 [ext_resource type="PackedScene" uid="uid://b2acn42s4skej" path="res://scenes/perso.tscn" id="2_e7f64"]
 [ext_resource type="Script" path="res://scenes/Camera2d.cs" id="3_sgk4s"]
+[ext_resource type="PackedScene" uid="uid://dhlv4aaux337g" path="res://scenes/pause_menu/pause_menu.tscn" id="4_i0u51"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_83445"]
 size = Vector2(3592, 38)
@@ -104,3 +105,5 @@ position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 script = ExtResource("3_sgk4s")
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_i0u51")]
