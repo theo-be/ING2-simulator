@@ -55,7 +55,7 @@ position = Vector2(1775, 278)
 shape = SubResource("RectangleShape2D_sruiv")
 
 [node name="plateforme2" type="CollisionShape2D" parent="chantier"]
-position = Vector2(749, 422.75)
+position = Vector2(750, 421)
 shape = SubResource("RectangleShape2D_sruiv")
 
 [node name="plateforme4" type="CollisionShape2D" parent="chantier"]
@@ -80,6 +80,7 @@ shape = SubResource("RectangleShape2D_sruiv")
 
 [node name="plateforme1" type="CollisionShape2D" parent="chantier"]
 position = Vector2(308, 357.5)
+rotation = 0.0127985
 shape = SubResource("RectangleShape2D_sruiv")
 
 [node name="usine1H" type="CollisionShape2D" parent="chantier"]
